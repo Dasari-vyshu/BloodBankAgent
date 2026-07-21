@@ -1,0 +1,21 @@
+// middleware/verifyToken.js
+const jwt = require("jsonwebtoken");
+
+function verifyToken(req, res, next) {
+  const header = req.headers.authorization || "";
+  const token = header.startsWith("Bearer ") ? header.slice(7) : null;
+
+  if (!token) {
+    return res.status(401).json({ error: "Missing or invalid Authorization header." });
+  }
+
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = payload; // { mobile }
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: "Session expired or invalid token. Please log in again." });
+  }
+}
+
+module.exports = verifyToken;

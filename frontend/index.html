@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login · Blood Bank Availability Agent</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="drop"></div>
+        <h1>Blood Bank Availability Agent</h1>
+      </div>
+      <p class="subtitle">Find blood fast, anywhere in the network.</p>
+
+      <div id="alertBox"></div>
+
+      <!-- Step 1: enter mobile number -->
+      <form id="mobileForm">
+        <div class="field">
+          <label for="mobile">Mobile number</label>
+          <div class="mobile-input-row">
+            <span class="prefix">+91</span>
+            <input type="tel" id="mobile" maxlength="10" placeholder="9876543210" autocomplete="tel" required />
+          </div>
+          <div class="hint">We'll send a one-time password (OTP) to this number.</div>
+        </div>
+        <button type="submit" class="btn" id="sendOtpBtn">Send OTP</button>
+      </form>
+
+      <!-- Step 2: enter OTP -->
+      <form id="otpForm" class="hidden">
+        <div class="field">
+          <label for="otp">Enter OTP</label>
+          <input type="text" id="otp" maxlength="6" placeholder="6-digit code" autocomplete="one-time-code" required />
+          <div class="hint" id="otpHint">Code sent to <span id="otpMobileLabel"></span></div>
+        </div>
+        <button type="submit" class="btn" id="verifyOtpBtn">Verify & Login</button>
+        <div style="text-align:center; margin-top: 14px;">
+          <button type="button" class="btn-link" id="changeNumberBtn">Change number</button>
+          &nbsp;·&nbsp;
+          <button type="button" class="btn-link" id="resendOtpBtn">Resend OTP</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

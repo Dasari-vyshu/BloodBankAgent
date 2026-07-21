@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard · Blood Bank Availability Agent</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="topbar">
+      <div class="brand">
+        <div class="drop"></div>
+        <span>Blood Bank Availability Agent</span>
+      </div>
+      <div class="user-info">
+        <span id="userMobile"></span>
+        <button class="btn-link" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="value" id="statBanks">–</div>
+          <div class="label">Blood banks in network</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="value" id="statStates">–</div>
+          <div class="label">States covered</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="value" id="statDonors">–</div>
+          <div class="label">Registered donors</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Find blood now</h2>
+
+        <div id="searchAlert"></div>
+
+        <form id="searchForm" class="search-grid">
+
+          <div class="field">
+            <label for="bloodGroup">Blood group</label>
+            <select id="bloodGroup" required>
+              <option value="">Select</option>
+              <option>A+ve</option>
+              <option>A-ve</option>
+              <option>B+ve</option>
+              <option>B-ve</option>
+              <option>AB+ve</option>
+              <option>AB-ve</option>
+              <option>O+ve</option>
+              <option>O-ve</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="state">State</label>
+            <select id="state">
+              <option value="">Any</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="district">District</label>
+            <select id="district">
+              <option value="">Any</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="city">City</label>
+            <select id="city">
+              <option value="">Any</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="unitsRequired">Units required</label>
+            <input type="number" id="unitsRequired" min="1" value="1" />
+          </div>
+
+          <div class="field">
+            <label for="emergencyLevel">Emergency level</label>
+            <select id="emergencyLevel">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+              <option>Critical</option>
+            </select>
+          </div>
+
+          <div class="full-row">
+            <button type="submit" class="btn" id="searchBtn">
+              Search
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Google Maps Section -->
+      <div class="card">
+        <h2>Blood Bank Locations</h2>
+        <div id="map" style="height:400px;width:100%;"></div>
+      </div>
+
+      <div class="two-col">
+
+        <div class="card">
+          <h2>Matching blood banks</h2>
+
+          <div id="resultsContainer">
+            <div class="empty-state">
+              Run a search to see nearby blood banks here.
+            </div>
+          </div>
+        </div>
+
+        <div>
+
+          <div class="card">
+            <h2>Suggested donors</h2>
+
+            <div id="donorsContainer">
+              <div class="empty-state">
+                Matching donors will appear here after a search.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Recent searches</h2>
+
+            <div id="historyContainer">
+              <div class="empty-state">
+                No searches yet.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+        <h2>Browse full blood bank directory</h2>
+
+        <div class="field" style="max-width: 320px;">
+          <label for="directorySearch">Search by name</label>
+
+          <input
+            type="text"
+            id="directorySearch"
+            placeholder="e.g. Red Cross"
+          />
+        </div>
+
+        <div id="directoryContainer">
+          <div class="empty-state">
+            Type a name above to search the full directory.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script async
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLZ2SWNewTeHQBj2y38aZldM7PZ4tQ--0&callback=initMap">
+</script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>
